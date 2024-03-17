@@ -29,7 +29,7 @@ Service {
     property var views
     property var controllers
 
-    readonly property var defaultMethods: ["getForegroundAppInfo", "captureCompositorOutput"]
+    readonly property var defaultMethods: ["getForegroundAppInfo", "captureCompositorOutput", "getAppLaunchEnvironment"]
 
     readonly property ForegroundAppInfoMgr foregroundAppInfoMgr: ForegroundAppInfoMgr {}
 
@@ -158,5 +158,18 @@ Service {
         }
 
         return JSON.stringify(ret);
+    }
+
+    function getAppLaunchEnvironment(param) {
+        const env = { XDG_RUNTIME_DIR: ENV_XDG_RUNTIME_DIR.toString() };
+        if (ENV_WAYLAND_DISPLAY_LSM?.toString()?.length > 0) {
+            env.WAYLAND_DISPLAY = ENV_WAYLAND_DISPLAY_LSM.toString();
+        } else {
+            env.WAYLAND_DISPLAY = ENV_WAYLAND_DISPLAY?.toString();
+        }
+        if (ENV_PULSE_SERVER?.toString()?.length > 0) {
+            env.PULSE_SERVER = ENV_PULSE_SERVER.toString();
+        }
+        return JSON.stringify({ env, returnValue: true });
     }
 }

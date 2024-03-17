@@ -153,6 +153,11 @@ WebOSCompositorWindow::WebOSCompositorWindow(QString screenName, QString geometr
 
     // Start with cursor invisible
     invalidateCursor();
+
+    engine()->rootContext()->setContextProperty("ENV_PULSE_SERVER", qgetenv("PULSE_SERVER"));
+    engine()->rootContext()->setContextProperty("ENV_WAYLAND_DISPLAY_LSM", qgetenv("WAYLAND_DISPLAY_LSM"));
+    engine()->rootContext()->setContextProperty("ENV_WAYLAND_DISPLAY", qgetenv("WAYLAND_DISPLAY"));
+    engine()->rootContext()->setContextProperty("ENV_XDG_RUNTIME_DIR", qgetenv("XDG_RUNTIME_DIR"));
 }
 
 WebOSCompositorWindow::~WebOSCompositorWindow()

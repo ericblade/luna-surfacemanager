@@ -3,6 +3,7 @@
         "com.webos.surfacemanager/captureCompositorOutput"
     ],
     "surfacemanager.query": [
-        "com.webos.surfacemanager/getForegroundAppInfo"
+        "com.webos.surfacemanager/getForegroundAppInfo",
+        "com.webos.surfacemanager/getAppLaunchEnvironment"
     ]
 }
